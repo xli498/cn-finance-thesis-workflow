@@ -17,13 +17,18 @@ private/
 *.pkl
 *.pickle
 
-# 个人数据与产出
-data/raw/
-data/clean/
-docs/
+# 个人数据与产出（仅锚定仓库根目录，避免牵连 examples/ 下的脱敏示例）
+/data/raw/
+/data/clean/
+/docs/
 *.dta
 *.xlsx
 *.csv
+# Public, empty schema/templates are intentionally tracked
+!templates/*.csv
+!examples/**/reports/evidence-map.csv
+!examples/**/docs/00_topic.md
+!examples/**/docs/README.md
 
 # 系统与编辑器
 .DS_Store

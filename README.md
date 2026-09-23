@@ -22,12 +22,18 @@
 ```text
 SKILL.md                          # 主流程与规则
 references/
-  api-setup.md                    # ★ 首次使用先读：各数据源申请与配置指引
+  api-setup.md                    # 各数据源申请与配置指引
+  existing-capabilities.md        # OpenClaw 本机能力适配（可选）
+  topic-adaptation.md             # 其他题目的通用适配与多用户隐私边界
+  writing-integration.md          # 分阶段写作与作者声音适配
   stage-gates.md                  # 阶段质量门 Checklist
   cleaning-checklist.md           # 数据清洗细则
   robustness-checklist.md         # 稳健性与内生性清单
   writing-rules.md                # 中文实证论文写作规则
   text-check-rules.md             # 文本确定性检查规则
+templates/                        # 选题、文献、变量、清洗、证据模板
+examples/                         # 脱敏示例项目
+scripts/                          # 本地结构与证据门验收
 ```
 
 ## 新手快速上手
@@ -40,7 +46,7 @@ references/
 git clone https://github.com/xli498/cn-finance-thesis-workflow.git
 ```
 
-解压后确认目录中有 `SKILL.md`、`README.md` 和 `references/` 文件夹。
+解压后确认目录中有 `SKILL.md`、`README.md`、`references/`、`templates/` 和 `scripts/`。
 
 ### 第二步：让 Agent 加载
 
@@ -51,6 +57,8 @@ git clone https://github.com/xli498/cn-finance-thesis-workflow.git
 ```text
 请使用 cn-finance-thesis-workflow。先判断我的论文处于哪个阶段，只做本阶段任务，并列出需要我提供的材料；不要编造文献、数据或结果。
 ```
+
+本 Skill 可以处理其他金融、会计和管理类题目。先读取 `references/topic-adaptation.md`，从用户题目重新建立研究设计。真实用户项目应使用独立目录，默认不上传公开仓库；外部上传前必须确认数据范围和授权。
 
 ### 第三步：先从零配置开始
 
@@ -65,6 +73,17 @@ git clone https://github.com/xli498/cn-finance-thesis-workflow.git
 ### 作为纯流程文档使用
 
 不使用 Agent 也可以：按 `SKILL.md` 第 3 节判断阶段、按第 4 节执行，并参考 `references/` 下的清单逐项人工核验。
+
+## 验收与版本
+
+运行脱敏示例的结构检查：
+
+```bash
+python scripts/validate_workflow.py examples/generic-panel-study
+```
+
+本仓库提供 `v1.1.0` 稳定版本；规则、模板和验收脚本同步变更时请更新 `CHANGELOG.md`。外部接口与数据政策可能变化，不能把一次接口成功当作长期可用性证明。
+
 ## 配置数据源
 
 **首次使用请读 [`references/api-setup.md`](references/api-setup.md)**，里面有每个来源的申请入口、费用与额度说明、配置方式与最小验证命令。额度和接口政策可能变化，请以各平台官方页面为准。
