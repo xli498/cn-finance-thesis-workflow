@@ -23,7 +23,7 @@ dependencies:
     optional: true
   - name: guosen-finance-all
     optional: true
-version: "1.1.0"
+version: "1.2.1"
 author: "community-maintained"
 created: "2026-09-23"
 license: "MIT"
@@ -114,7 +114,7 @@ license: "MIT"
 
 - 深度研究不是硬依赖；先读取 `references/research-integration.md`，确认当前环境可用的检索、全文、整理和核验能力。
 - 有专用研究 Agent 时，要求其返回来源、证据、置信度和缺口；没有专用 Agent 时，使用分轮检索清单、本地模型或用户提供的文献完成等价流程。
-- 不得把某个平台专属能力当作公开用户的默认能力；本机适配器只能作为可选实现，失败时回退到通用流程。
+- 不得把某个平台专属能力当作公开用户的默认能力；本地适配器只能作为可选实现，失败时回退到通用流程。
 - 深度研究结果必须先进入证据地图并经过用户确认，再驱动论文大纲和正文。
 
 | 阶段 | 判定条件 | 主要产物 | 质量门 |
