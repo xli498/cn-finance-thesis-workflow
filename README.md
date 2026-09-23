@@ -29,27 +29,41 @@ references/
   text-check-rules.md             # 文本确定性检查规则
 ```
 
-## 快速开始
+## 新手快速上手
 
-### 1. 作为一个技能使用
+### 第一步：下载
 
-把整个目录放到你的 Agent 技能目录下（不同平台路径不同，例如 `~/.agents/skills/`），然后直接说：
+在本仓库页面点击 **Code → Download ZIP** 并解压。也可以用 Git：
 
-```text
-用 cn-finance-thesis-workflow 帮我规划一篇实证论文
+```bash
+git clone https://github.com/xli498/cn-finance-thesis-workflow.git
 ```
 
-Agent 会先判断你处于哪个阶段，再只加载该阶段规则。
+解压后确认目录中有 `SKILL.md`、`README.md` 和 `references/` 文件夹。
 
-### 2. 作为纯流程文档使用
+### 第二步：让 Agent 加载
 
-即使不用 Agent，也可以把 `SKILL.md` 当作论文写作 SOP：
+把整个 `cn-finance-thesis-workflow` 文件夹放进你使用的 Agent 所支持的技能目录。技能目录因平台和安装方式不同而异；请按该 Agent 的官方说明选择路径。**不要只复制 `SKILL.md`**，`references/` 里的阶段门、API 指引和检查清单也需要保留。
 
-1. 按第 3 节的表判断当前阶段；
-2. 按第 4 节执行该阶段 SOP；
-3. 每阶段结束对照 `references/stage-gates.md` 打勾；
-4. 终稿前跑 `references/text-check-rules.md`。
+重启或刷新 Agent 的技能列表（如果平台要求），确认它能识别 `cn-finance-thesis-workflow`。然后发送：
 
+```text
+请使用 cn-finance-thesis-workflow。先判断我的论文处于哪个阶段，只做本阶段任务，并列出需要我提供的材料；不要编造文献、数据或结果。
+```
+
+### 第三步：先从零配置开始
+
+**不需要先申请 API，也不需要把任何 Key 填进 Skill。** 可以先让 Agent 帮你整理研究问题、变量草案、数据需求清单和阶段计划；有人已有本地授权数据时，也可直接用 Excel / CSV / DTA 开始。
+
+确实需要联网检索或取数时，再打开 [`references/api-setup.md`](references/api-setup.md)，按所选来源的官方说明自行配置。只选自己能合法使用的数据源；没有机构数据库授权时，跳过授权数据库，改用公开接口、开源数据工具或本地已有文件。Key 应保存在本机环境变量或平台的 Secret 管理器中，切勿写进仓库、论文文件或聊天记录。
+
+### 第四步：按阶段推进
+
+工作流有 S0–S6 七个阶段。先根据 `SKILL.md` 第 3 节判断当前阶段，再按该阶段 SOP 工作；结束时对照 `references/stage-gates.md` 检查，未通过就先补齐，不要跳阶段。
+
+### 作为纯流程文档使用
+
+不使用 Agent 也可以：按 `SKILL.md` 第 3 节判断阶段、按第 4 节执行，并参考 `references/` 下的清单逐项人工核验。
 ### 3. 配置数据源（推荐先做）
 
 **首次使用请读 [`references/api-setup.md`](references/api-setup.md)**，里面有每个来源的申请入口、费用与额度说明、配置方式与最小验证命令。额度和接口政策可能变化，请以各平台官方页面为准。
