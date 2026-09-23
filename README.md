@@ -64,7 +64,7 @@ git clone https://github.com/xli498/cn-finance-thesis-workflow.git
 ### 作为纯流程文档使用
 
 不使用 Agent 也可以：按 `SKILL.md` 第 3 节判断阶段、按第 4 节执行，并参考 `references/` 下的清单逐项人工核验。
-### 3. 配置数据源（推荐先做）
+## 配置数据源
 
 **首次使用请读 [`references/api-setup.md`](references/api-setup.md)**，里面有每个来源的申请入口、费用与额度说明、配置方式与最小验证命令。额度和接口政策可能变化，请以各平台官方页面为准。
 
