@@ -7,6 +7,15 @@ credentials*
 secrets*
 config.local.*
 *.token
+.local/
+private/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.parquet
+*.pkl
+*.pickle
 
 # 个人数据与产出
 data/raw/
