@@ -16,14 +16,13 @@
 - 配置：
 
 ```bash
-export CROSSREF_MAILTO=""      # 留空则匿名访问；填入你的邮箱可进入 polite pool
+export CROSSREF_MAILTO=""      # 留空则匿名访问；如填写邮箱，它属于个人信息，只在本机临时设置，不要写入脚本、仓库或聊天记录
 ```
 
 - 最小验证：下面命令会完整保存一份临时响应，再读取前 300 个字符，避免管道提前关闭造成误判。
 
 ```bash
-curl --fail --show-error --location "https://api.crossref.org/works/10.1038/nature12373?mailto=$CROSSREF_MAILTO" -o /tmp/crossref-check.json
-python -c "from pathlib import Path; print(Path('/tmp/crossref-check.json').read_text()[:300])"
+tmp=$(mktemp) && trap 'rm -f "$tmp"' EXIT && curl --fail --show-error --location "https://api.crossref.org/works/10.1038/nature12373?mailto=$CROSSREF_MAILTO" -o "$tmp" && python -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).read_text()[:300])' "$tmp"
 ```
 
 ### 2. OpenAlex（推荐，免费，无需注册）
@@ -34,14 +33,13 @@ python -c "from pathlib import Path; print(Path('/tmp/crossref-check.json').read
 - 配置：
 
 ```bash
-export OPENALEX_MAILTO=""      # 留空则匿名访问；填入你的邮箱可进入 polite pool
+export OPENALEX_MAILTO=""      # 留空则匿名访问；如填写邮箱，它属于个人信息，只在本机临时设置，不要写入脚本、仓库或聊天记录
 ```
 
 - 最小验证：下面命令会完整保存一份临时响应，再读取前 300 个字符，避免管道提前关闭造成误判。
 
 ```bash
-curl --fail --show-error --location "https://api.openalex.org/works?search=corporate+risk&per-page=1&mailto=$OPENALEX_MAILTO" -o /tmp/openalex-check.json
-python -c "from pathlib import Path; print(Path('/tmp/openalex-check.json').read_text()[:300])"
+tmp=$(mktemp) && trap 'rm -f "$tmp"' EXIT && curl --fail --show-error --location "https://api.openalex.org/works?search=corporate+risk&per-page=1&mailto=$OPENALEX_MAILTO" -o "$tmp" && python -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).read_text()[:300])' "$tmp"
 ```
 
 ### 3. AMiner（中文友好，需注册 Key）
@@ -64,8 +62,7 @@ export AMINER_API_KEY=""       # 填入你自己的 AMiner Key
 - 最小验证：下面命令会完整保存一份临时响应，再读取前 300 个字符，避免管道提前关闭造成误判。
 
 ```bash
-curl --fail --show-error --location "https://export.arxiv.org/api/query?search_query=all:earnings+management&max_results=1" -o /tmp/arxiv-check.xml
-python -c "from pathlib import Path; print(Path('/tmp/arxiv-check.xml').read_text()[:300])"
+tmp=$(mktemp) && trap 'rm -f "$tmp"' EXIT && curl --fail --show-error --location "https://export.arxiv.org/api/query?search_query=all:earnings+management&max_results=1" -o "$tmp" && python -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).read_text()[:300])' "$tmp"
 ```
 
 ### 5. 中文期刊全文库（需机构订阅）
@@ -98,7 +95,7 @@ python -c "import akshare; print(getattr(akshare, '__version__', 'version metada
 python -c "import akshare as ak; print(ak.stock_zh_a_spot_em().head())"
 ```
 
-验证依赖网络、Python 包版本和上游数据源可用性；失败时改用本地导出数据，不要用随机或合成数据替代。
+先执行导入检查，区分“包已安装”和“上游接口可用”；后一个命令会访问上游并拉取全市场实时行情，可能受网络、限流和接口变更影响。验证失败时改用本地导出数据，不要用随机或合成数据替代。
 
 ### 2. Tushare（积分与接口权限以平台当前规则为准）
 
@@ -156,7 +153,7 @@ python -c 'import os, tushare as ts; token=os.environ.get("TUSHARE_TOKEN", ""); 
 ## 四、配置检查清单
 
 - [ ] 只使用环境变量或本地未提交的配置文件保存 Key
-- [ ] 仓库内不存在 `.env`、`*.key`、cookie、账号密码（见 `.gitignore`）
+- [ ] 仓库内不存在 `.env`、`*.key`、cookie、账号密码（见 `.gitignore`）；注意 `.gitignore` 只影响未跟踪文件，已提交文件仍需单独清理并检查历史
 - [ ] 付费接口已确认当前价格、余额、权限与条款，并设置消费上限
 - [ ] 抓取类来源已限速，且遵守平台条款
 - [ ] 数据来源、版本与取数时间已记入 `data/raw/` 说明
