@@ -1,0 +1,25 @@
+# 凭证与本地配置
+.env
+.env.*
+*.key
+*.pem
+credentials*
+secrets*
+config.local.*
+*.token
+
+# 个人数据与产出
+data/raw/
+data/clean/
+docs/
+*.dta
+*.xlsx
+*.csv
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+__pycache__/
+*.pyc
