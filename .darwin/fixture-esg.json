@@ -1,0 +1,12 @@
+{
+  "is_test_fixture": true,
+  "source_note": "synthetic_test_only; never use as thesis evidence",
+  "columns": ["stock_code", "year", "esg_score", "assets_yuan", "liabilities_yuan", "sa_index"],
+  "rows": [
+    ["000001", 2018, 72, 100000000, 45000000, -3.1],
+    ["000001", 2019, 75, 110000000, 52000000, -3.0],
+    ["000002", 2018, null, 90000000, 80000000, -3.7],
+    ["000002", 2018, 61, 90000000, 80000000, -3.7],
+    ["000003", 2023, 88, 1200000000, 600000000, null]
+  ]
+}
