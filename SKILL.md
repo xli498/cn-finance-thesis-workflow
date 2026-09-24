@@ -23,7 +23,7 @@ dependencies:
     optional: true
   - name: guosen-finance-all
     optional: true
-version: "1.4.0"
+version: "1.4.1"
 author: "community-maintained"
 created: "2026-09-23"
 license: "MIT"
@@ -132,6 +132,7 @@ license: "MIT"
 - 缺口分两层：**现在必须**（最多三项、按优先级）和**后续再补**；已有附件或本地路径时先只读检查，不反问用户重复上传。文件只是口头提及、实际不可读取时，第一件事是索取文件或有效路径，不能声称检查过。
 - Excel/CSV 优先顺序：实际文件/路径及来源 → 读取工作表或表头、行数、公司—年份键与缺失 → 核对核心 X/Y 的来源和口径 → 再讨论筛样、清洗、识别与回归。未到该阶段，不展开所有后续方法。
 - 报告中把 `executed`、`planned`、`blocked` 与阶段质量门 `pass`、`needs_evidence`、`blocked` 分开；**执行过一项检查不代表整个阶段通过**。标注已执行的证据位置和未覆盖范围，不报伪精确完成度。
+- 证据地图中为每条主张记录结构化字段：`blocking`（`true`/`false`，是否阻塞当前阶段）、`gate_scope`（`literature` / `data` / `author` / `school` / `execution`）、`evidence_required`（`true`/`false`）。`verification_status` 仍记录核验状态；不得用自然语言暗示替代这些字段。
 
 ### 3.4 深度研究路由（可选、平台无关）
 

@@ -18,6 +18,8 @@ jobs:
       - name: Validate workflow
         run: |
           python -m py_compile scripts/validate_workflow.py
+          python -m py_compile scripts/run_behavior_checks.py
           python scripts/validate_workflow.py examples/generic-panel-study
+          python scripts/run_behavior_checks.py
           grep -q 'triggers:' SKILL.md
           grep -q 'dependencies:' SKILL.md
