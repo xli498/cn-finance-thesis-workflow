@@ -1,2 +1,2 @@
 claim,claim_strength,evidence_type,source_or_result_ref,verification_status,action_if_missing
-研究问题一句话可陈述,moderate,method_note,00_topic.md,confirmed,keep_wording
+研究问题一句话可陈述,needs_evidence,method_note,00_topic.md,needs_clarification,先补充研究问题

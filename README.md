@@ -83,7 +83,7 @@ git clone https://github.com/xli498/cn-finance-thesis-workflow.git
 python scripts/validate_workflow.py examples/generic-panel-study
 ```
 
-本仓库提供 `v1.2.1` 稳定版本；规则、模板和验收脚本同步变更时请更新 `CHANGELOG.md`。外部接口与数据政策可能变化，不能把一次接口成功当作长期可用性证明。
+本仓库提供 `v1.2.2` 稳定版本；规则、模板和验收脚本同步变更时请更新 `CHANGELOG.md`。外部接口与数据政策可能变化，不能把一次接口成功当作长期可用性证明。
 
 ## 配置数据源
 

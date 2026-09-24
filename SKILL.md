@@ -23,7 +23,7 @@ dependencies:
     optional: true
   - name: guosen-finance-all
     optional: true
-version: "1.2.1"
+version: "1.2.2"
 author: "community-maintained"
 created: "2026-09-23"
 license: "MIT"
